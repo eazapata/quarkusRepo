@@ -20,12 +20,6 @@ public class Service {
     @Inject
     MovieRepository repository;
 
-
-
-    public String greeting(String name) {
-        return "Hello " + name;
-    }
-
     @Transactional
     public List setInfo(String name) {
         String uri = String.format("%s%s", DEFAULT_URI, name);
@@ -50,11 +44,29 @@ public class Service {
     public List<Movie> getInfo(String name, String rating) {
         MovieList filmList = new MovieList();
         HtmlParser htmlParser = new HtmlParser();
-        filmList.setFilms(repository.findByTitleContainingAndFilmRatingGreaterThan(name, Utils.replace(rating)));
+        filmList.setFilms(repository.findByTitleContainingAndFilmRatingGreaterThanEqual(name, Utils.replace(rating)));
         htmlParser.marshall2JSON(FILE_NAME, filmList.getFilms(), name);
         htmlParser.marshall2XML(FILE_NAME, filmList, name);
-        return repository.findByTitleContainingAndFilmRatingGreaterThan(name, Utils.replace(rating));
+        return repository.findByTitleContainingAndFilmRatingGreaterThanEqual(name, Utils.replace(rating));
     }
 
-
+    public List<Movie> getTitle(String name) {
+        MovieList filmList = new MovieList();
+        HtmlParser htmlParser = new HtmlParser();
+        filmList.setFilms(repository.findByTitleContaining(name));
+        htmlParser.marshall2JSON(FILE_NAME, filmList.getFilms(), name);
+        htmlParser.marshall2XML(FILE_NAME, filmList, name);
+        return repository.findByTitleContaining(name);
+    }
+    public List<Movie> getRating(double rating) {
+        MovieList filmList = new MovieList();
+        HtmlParser htmlParser = new HtmlParser();
+        filmList.setFilms(repository.findByFilmRatingGreaterThanEqual(rating));
+        htmlParser.marshall2JSON(FILE_NAME, filmList.getFilms(),String.valueOf(rating));
+        htmlParser.marshall2XML(FILE_NAME, filmList, String.valueOf(rating));
+        return repository.findByFilmRatingGreaterThanEqual(rating);
+    }
+    public MovieRepository getRepository() {
+        return this.repository;
+    }
 }

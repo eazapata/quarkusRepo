@@ -18,12 +18,6 @@ public class Movie {
     @Column(columnDefinition = "json")
     @Convert(converter = JsonToMapConverter.class)
     private Map<String, String> casting;
-
-
-
-
-   // private String description;
-
     @Column(columnDefinition = "json")
     @Convert(converter = JsonToMapConverter.class)
     private Map<String, String> description;
@@ -83,14 +77,6 @@ public class Movie {
     public void setFilmRating(double filmRating) {
         this.filmRating = filmRating;
     }
-
-  /*  public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }*/
 
     public Long getId() {
         return id;

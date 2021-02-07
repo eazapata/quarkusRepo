@@ -98,7 +98,7 @@ public class HtmlParser {
      * Método que obtiene la información de una página y la almacena en un arrayList.
      *
      * @param URI String que contiene la dirección de la página a la que se quiere acceder.
-     * @param <T> Objeto género al que es convertido el arrayList.
+     * @param <T> Objeto génerico al que es convertido el arrayList.
      * @return El objeto génerico para evitar castings posteriores.
      */
     @SuppressWarnings("unchecked")
@@ -154,7 +154,7 @@ public class HtmlParser {
                 movie.setYear(errorText);
                 movie.setDuration(errorText);
                 movie.setFilmRating(0);
-               // movie.getDescription().put(errorText, errorText);
+                movie.getDescription().put(errorText, errorText);
             }
             films.add(movie);
         }

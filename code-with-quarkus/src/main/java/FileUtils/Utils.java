@@ -38,8 +38,10 @@ public class Utils {
             numberParsed = Double.parseDouble(string);
         } else if (StringUtils.contains(string, correctSeparator)) {
             numberParsed = Double.parseDouble(string);
-        } else {
-            numberParsed = 0;
+        } else if (string.length() >= 1) {
+            numberParsed = Double.parseDouble(string);
+        }  else {
+            numberParsed = 0.0;
         }
         return numberParsed;
     }

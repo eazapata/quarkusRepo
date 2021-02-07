@@ -13,14 +13,7 @@ public class ScrappingController {
     @Inject
     Service service;
 
-    @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    @Path("/testing/{name}")
-    public String greeting(@PathParam("name") String name) {
-        return service.greeting(name);
-    }
-
-    @GET
+    @PUT
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/setInfo/{name}")
     public List setInfo(@PathParam("name") String name) {
@@ -34,8 +27,19 @@ public class ScrappingController {
         return service.getInfo(name,rating);
     }
 
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/getTitle/{name}")
+    public List getTitle(@PathParam("name") String name) {
+        return service.getTitle(name);
+    }
 
-
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/getRating/{rating}")
+    public List getRating(@PathParam("rating") double rating) {
+        return service.getRating(rating);
+    }
 
 
 }
